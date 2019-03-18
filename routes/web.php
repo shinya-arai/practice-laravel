@@ -15,4 +15,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/index', 'PostsController@index');
+// Route::get('/index', 'PostsController@index');
+
+Route::get('/insert', functon() {
+    DB::insert('insert into posts(title, content values(?, ?))', ['PHP with laravel', 'laravel is awesome'])
+});
