@@ -17,6 +17,8 @@ Route::get('/', function () {
 
 // Route::get('/index', 'PostsController@index');
 
-Route::get('/insert', functon() {
-    DB::insert('insert into posts(title, content values(?, ?))', ['PHP with laravel', 'laravel is awesome'])
+Route::get('/insert', function() {
+    // DB::insert('insert into posts(title, body) values(?, ?)', ['PHP with laravel', 'laravel is awesome']);
+
+    DB::insert('insert into posts(title, body) values(?, ?)', ['php', 'awesome']);
 });
