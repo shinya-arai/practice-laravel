@@ -1,6 +1,7 @@
 <?php
 
 use App\Post;
+use App\Content;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,9 +14,9 @@ use App\Post;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 Route::get('/index', 'PostsController@index');
 
@@ -80,6 +81,7 @@ Route::get('/create', function() {
     Post::create([
         'title' => 'hi! laravel',
         'body' => 'php is easy',
+        'user_id' => 1
     ]);
 });
 
@@ -101,4 +103,38 @@ Route::get('/readsoftdelete', function() {
     $post = Post::onlyTrashed()->whereNotNull('id')->get();
 
     dd($post);
+});
+
+
+
+Route::get('/contents/insert', function() {
+    Content::create([
+        'body' => 'Laravel is PHP framework!!',
+    ]);
+});
+
+Route::get('/contents/insert2', function() {
+    Content::create([
+        'body' => 'PHP is programming language!!',
+    ]);
+});
+
+Route::get('/contents/insert3', function() {
+    Content::create([
+        'body' => 'programming is a lot of fun!!',
+    ]);
+});
+
+Route::get('/contents/softdelete', function() {
+    Content::find(1)->delete();
+});
+
+Route::get('/contents/softdelete/get', function() {
+    $content = Content::onlyTrashed()->whereNotNull('id')->get();
+
+    dd($content);
+});
+
+Route::get('/contents/forcedelete', function() {
+    Content::onlyTrashed()->whereNotNull('id')->forceDelete();
 });
